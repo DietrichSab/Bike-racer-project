@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Racers Log App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Racers Log App</h1>
+        <div class="form">
+            <input type="text" id="nameInput" placeholder="Racer Name">
+            <input type="number" id="timeInput" placeholder="Time in seconds">
+            <button onclick="addRacer()">Add Racer</button>
+        </div>
+        <div class="racers-list">
+            <ul id="racersList"></ul>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
