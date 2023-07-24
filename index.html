@@ -19,5 +19,25 @@
         </div>
     </div>
     <script src="app.js"></script>
+    <script>
+    // Function to save data to localStorage
+    function saveData() {
+      const userInput = document.getElementById('userInput').value;
+      localStorage.setItem('savedData', userInput);
+    }
+
+    // Function to clear data from localStorage
+    function clearData() {
+      localStorage.removeItem('savedData');
+    }
+
+    // Retrieve data from localStorage and populate the input field on page load
+    window.onload = function() {
+      const savedData = localStorage.getItem('savedData');
+      if (savedData) {
+        document.getElementById('userInput').value = savedData;
+      }
+    };
+    </script>
 </body>
 </html>
