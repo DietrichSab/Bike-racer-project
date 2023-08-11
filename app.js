@@ -1,7 +1,7 @@
 ﻿let racers = [];
 
 window.addEventListener('load', () => {
-    loadData(); // Load saved data on page load
+    loadData();
     updateRacersList();
 });
 
@@ -29,7 +29,10 @@ function updateRacersList() {
     const racersList = document.getElementById('racersList');
     racersList.innerHTML = '';
 
-    racers.forEach((racer, index) => {
+    // Sort racers array by time in ascending order
+    const sortedRacers = racers.slice().sort((a, b) => a.time - b.time);
+
+    sortedRacers.forEach((racer, index) => {
         const listItem = document.createElement('li');
         listItem.textContent = `${racer.name}: ${racer.time} minutes`;
 
