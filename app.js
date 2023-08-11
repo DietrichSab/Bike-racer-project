@@ -1,11 +1,8 @@
 ﻿let racers = [];
 
 window.addEventListener('load', () => {
-    const savedRacers = localStorage.getItem('racers');
-    if (savedRacers) {
-        racers = JSON.parse(savedRacers);
-        updateRacersList();
-    }
+    loadData(); // Load saved data on page load
+    updateRacersList();
 });
 
 function addRacer() {
@@ -22,8 +19,6 @@ function addRacer() {
 
     const racer = { name, time };
     racers.push(racer);
-
-    localStorage.setItem('racers', JSON.stringify(racers));
 
     updateRacersList();
     nameInput.value = '';
@@ -51,6 +46,24 @@ function updateRacersList() {
 
 function deleteRacer(index) {
     racers.splice(index, 1);
-    localStorage.setItem('racers', JSON.stringify(racers));
     updateRacersList();
+}
+
+function saveData() {
+    localStorage.setItem('racers', JSON.stringify(racers));
+    alert('Racer data has been saved.');
+}
+
+function deleteData() {
+    localStorage.removeItem('racers');
+    racers = [];
+    updateRacersList();
+    alert('Racer data has been deleted.');
+}
+
+function loadData() {
+    const savedRacers = localStorage.getItem('racers');
+    if (savedRacers) {
+        racers = JSON.parse(savedRacers);
+    }
 }
