@@ -27,7 +27,7 @@ function updateRacersList() {
 
     racers.forEach((racer) => {
         const listItem = document.createElement('li');
-        listItem.textContent = `${racer.name}: ${racer.time} seconds`;
+        listItem.textContent = `${racer.name}: ${racer.time} minutes`;
         racersList.appendChild(listItem);
     });
 }
