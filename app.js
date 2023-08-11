@@ -1,38 +1,32 @@
-﻿let racers = [];
+﻿// Sample array to store racers and their times
+let racers = [];
 
 window.addEventListener('load', () => {
-    loadData();
-    updateRacersList();
+    const savedRacers = localStorage.getItem('racers');
+    if (savedRacers) {
+        racers = JSON.parse(savedRacers);
+        updateRacersList();
+    }
 });
 
 function addRacer() {
     const nameInput = document.getElementById('nameInput');
     const timeInput = document.getElementById('timeInput');
-
-    const name = nameInput.value.trim();
-    const time = parseInt(timeInput.value);
-
-    if (name === '' || isNaN(time)) {
-        alert('Please enter valid name and time.');
-        return;
-    }
-
+@ -16,6 +24,8 @@ function addRacer() {
     const racer = { name, time };
     racers.push(racer);
+
+    localStorage.setItem('racers', JSON.stringify(racers));
 
     updateRacersList();
     nameInput.value = '';
     timeInput.value = '';
-}
-
-function updateRacersList() {
+@ -25,11 +35,25 @@ function updateRacersList() {
     const racersList = document.getElementById('racersList');
     racersList.innerHTML = '';
 
-    // Sort racers array by time in ascending order
-    const sortedRacers = racers.slice().sort((a, b) => a.time - b.time);
-
-    sortedRacers.forEach((racer, index) => {
+    racers.forEach((racer) => {
+    racers.forEach((racer, index) => {
         const listItem = document.createElement('li');
         listItem.textContent = `${racer.name}: ${racer.time} minutes`;
 
@@ -49,24 +43,7 @@ function updateRacersList() {
 
 function deleteRacer(index) {
     racers.splice(index, 1);
-    updateRacersList();
-}
-
-function saveData() {
     localStorage.setItem('racers', JSON.stringify(racers));
-    alert('Data saved.');
-}
-
-function deleteData() {
-    localStorage.removeItem('racers');
-    racers = [];
     updateRacersList();
-    alert('Data deleted.');
 }
 
-function loadData() {
-    const savedRacers = localStorage.getItem('racers');
-    if (savedRacers) {
-        racers = JSON.parse(savedRacers);
-    }
-}
