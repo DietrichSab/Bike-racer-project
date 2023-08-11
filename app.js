@@ -1,32 +1,39 @@
-﻿// Sample array to store racers and their times
-let racers = [];
+﻿let racers = [];
 
 window.addEventListener('load', () => {
-    const savedRacers = localStorage.getItem('racers');
-    if (savedRacers) {
-        racers = JSON.parse(savedRacers);
-        updateRacersList();
-    }
+    loadData();
+    updateRacersList();
 });
 
 function addRacer() {
     const nameInput = document.getElementById('nameInput');
     const timeInput = document.getElementById('timeInput');
-@ -16,6 +24,8 @@ function addRacer() {
+
+    const name = nameInput.value.trim();
+    const time = parseInt(timeInput.value);
+
+    if (name === '' || isNaN(time)) {
+        alert('Please enter valid name and time.');
+        return;
+    }
+
     const racer = { name, time };
     racers.push(racer);
-
-    localStorage.setItem('racers', JSON.stringify(racers));
 
     updateRacersList();
     nameInput.value = '';
     timeInput.value = '';
-@ -25,11 +35,25 @@ function updateRacersList() {
+
+    saveData(); // Save updated data after adding a racer
+}
+
+function updateRacersList() {
     const racersList = document.getElementById('racersList');
     racersList.innerHTML = '';
 
-    racers.forEach((racer) => {
-    racers.forEach((racer, index) => {
+    const sortedRacers = racers.slice().sort((a, b) => a.time - b.time);
+
+    sortedRacers.forEach((racer, index) => {
         const listItem = document.createElement('li');
         listItem.textContent = `${racer.name}: ${racer.time} minutes`;
 
@@ -43,7 +50,25 @@ function addRacer() {
 
 function deleteRacer(index) {
     racers.splice(index, 1);
-    localStorage.setItem('racers', JSON.stringify(racers));
     updateRacersList();
+    saveData(); // Save updated data after deleting a racer
 }
 
+function saveData() {
+    localStorage.setItem('racers', JSON.stringify(racers));
+    alert('Data saved.');
+}
+
+function deleteData() {
+    localStorage.removeItem('racers');
+    racers = [];
+    updateRacersList();
+    alert('Data deleted.');
+}
+
+function loadData() {
+    const savedRacers = localStorage.getItem('racers');
+    if (savedRacers) {
+        racers = JSON.parse(savedRacers);
+    }
+}
