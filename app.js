@@ -67,3 +67,24 @@ function loadData() {
         racers = JSON.parse(savedRacers);
     }
 }
+function exportToPDF() {
+    const doc = new jsPDF();
+
+    // Set document properties
+    doc.setProperties({
+        title: 'Racers Data',
+    });
+
+    // Create content for the PDF
+    const content = [];
+
+    racers.forEach((racer) => {
+        content.push(`${racer.name}: ${racer.time} minutes`);
+    });
+
+    // Add content to the PDF
+    doc.text(content, 10, 10);
+
+    // Save the PDF with a specific filename (e.g., racers.pdf)
+    doc.save('racers.pdf');
+}
