@@ -23,6 +23,7 @@ function addRacer() {
     updateRacersList();
     nameInput.value = '';
     timeInput.value = '';
+    saveData(); // Save the updated data
 }
 
 function updateRacersList() {
@@ -47,18 +48,19 @@ function updateRacersList() {
 function deleteRacer(index) {
     racers.splice(index, 1);
     updateRacersList();
+    saveData(); // Save the updated data after deleting a racer
 }
 
 function saveData() {
     localStorage.setItem('racers', JSON.stringify(racers));
-    alert('Racer data has been saved.');
+    alert('Data saved.');
 }
 
 function deleteData() {
     localStorage.removeItem('racers');
     racers = [];
     updateRacersList();
-    alert('Racer data has been deleted.');
+    alert('Data deleted.');
 }
 
 function loadData() {
@@ -67,6 +69,7 @@ function loadData() {
         racers = JSON.parse(savedRacers);
     }
 }
+
 function exportToPDF() {
     const doc = new jsPDF();
 
