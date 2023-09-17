@@ -85,8 +85,11 @@ function exportToPDF() {
         content.push(`${racer.name}: ${racer.time} minutes`);
     });
 
+    // Join the content array into a single string
+    const contentString = content.join('\n');
+
     // Add content to the PDF
-    doc.text(content, 10, 10);
+    doc.text(contentString, 10, 10);
 
     // Save the PDF with a specific filename (e.g., racers.pdf)
     doc.save('racers.pdf');
