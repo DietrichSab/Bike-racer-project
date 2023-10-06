@@ -70,27 +70,28 @@ function loadData() {
     }
 }
 
-  document.addEventListener('DOMContentLoaded', function () {
-    // Your code that interacts with jsPDF goes here
+function exportToPDF() {
+  console.log('Export to PDF button clicked.');
+    const doc = new jsPDF();
 
-    function exportToPDF() {
-        const doc = new jsPDF();
+    // Set document properties
+    doc.setProperties({
+        title: 'Racers Data',
+    });
 
-        // Set document properties (optional)
-        doc.setProperties({
-            title: 'Racers Data',
-        });
+    // Create content for the PDF
+    const content = [];
 
-        // Create content for the PDF
-        const content = [];
+    racers.forEach((racer) => {
+        content.push(`${racer.name}: ${racer.time} minutes`);
+    });
 
-        racers.forEach((racer) => {
-            content.push(`${racer.name}: ${racer.time} minutes`);
-        });
+    // Join the content array into a single string
+    const contentString = content.join('\n');
 
-        // Add content to the PDF
-        doc.text(content, 10, 10);
+    // Add content to the PDF
+    doc.text(contentString, 10, 10);
 
-        // Save the PDF with a specific filename (e.g., racers.pdf)
-        doc.save('racers.pdf');
-    }
+    // Save the PDF with a specific filename (e.g., racers.pdf)
+    doc.save('racers.pdf');
+}
