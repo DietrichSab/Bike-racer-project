@@ -3,6 +3,8 @@
 window.addEventListener('load', () => {
     loadData(); // Load saved data on page load
     updateRacersList();
+    const exportButton = document.getElementById('exportToPDF()'); 
+    exportButton.addEventListener('click', exportToPDF);
 });
 
 function addRacer() {
