@@ -4,7 +4,6 @@ window.addEventListener('load', () => {
     loadData(); // Load saved data on page load
     updateRacersList();
 });
-document.addEventListener('DOMContentLoaded', function () {
 
 function addRacer() {
     const nameInput = document.getElementById('nameInput');
@@ -71,7 +70,7 @@ function loadData() {
     }
 }
 
-
+  document.addEventListener('DOMContentLoaded', function () {
     // Your code that interacts with jsPDF goes here
 
     function exportToPDF() {
