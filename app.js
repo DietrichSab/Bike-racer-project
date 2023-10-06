@@ -71,6 +71,7 @@ function loadData() {
 }
 
 function exportToPDF() {
+  console.log('Export to PDF button clicked.');
     const doc = new jsPDF();
 
     // Set document properties
