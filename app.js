@@ -80,17 +80,18 @@ function exportToPDF() {
     });
 
     // Create content for the PDF
-    const content = [];
+    //const content = [];
 
-    racers.forEach((racer) => {
-        content.push(`${racer.name}: ${racer.time} minutes`);
-    });
+    //racers.forEach((racer) => {
+        //content.push(`${racer.name}: ${racer.time} minutes`);
+    //});
 
     // Join the content array into a single string
     const contentString = content.join('\n');
 
     // Add content to the PDF
-    doc.text(contentString, 10, 10);
+    //doc.text(contentString, 10, 10);
+    doc.text("hello")
 
     // Save the PDF with a specific filename (e.g., racers.pdf)
     doc.save('racers.pdf');
