@@ -1,5 +1,7 @@
 ﻿let racers = [];
 
+ window.jsPDF = require('jspdf');
+ 
 window.addEventListener('load', () => {
     loadData(); // Load saved data on page load
     updateRacersList();
